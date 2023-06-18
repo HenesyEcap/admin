@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
-import logo from './logo.png'; // Adjust the path based on the location of your logo file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faUser, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import logo from './logo.png';
 import './WelcomePage.css';
-
 import ManageAccounts from './ManageAccounts';
 
 function WelcomePage() {
@@ -22,7 +23,11 @@ function WelcomePage() {
   return (
     <div className={`welcome-page ${sidebarClosed ? 'sidebar-closed' : ''}`}>
       <button className="toggle-sidebar-button" onClick={toggleSidebar}>
-        {sidebarClosed ? '<' : '>'}
+        {sidebarClosed ? (
+          <FontAwesomeIcon icon={faChevronRight} />
+        ) : (
+          <FontAwesomeIcon icon={faChevronLeft} />
+        )}
       </button>
       <nav className="welcome-page-header">
         <div className="welcome-page-logo">
@@ -38,18 +43,20 @@ function WelcomePage() {
           <ul className="sidebar-nav">
             <li>
               <Link
-                to="/"
-                className={location.pathname === '/' ? 'active' : ''}
+                to="/WelcomePage"
+                className={location.pathname === '/WelcomePage' ? 'active' : ''}
               >
-                Dashboard
+                <FontAwesomeIcon icon={faChartBar} size="lg" />
+                <span>Dashboard</span>
               </Link>
             </li>
             <li>
               <Link
-                to="/manage-accounts"
-                className={location.pathname === '/manage-accounts' ? 'active' : ''}
+                to="/ManageAccounts"
+                className={location.pathname === '/ManageAccounts' ? 'active' : ''}
               >
-                Manage Accounts
+                <FontAwesomeIcon icon={faUser} size="lg" />
+                <span>Manage Accounts</span>
               </Link>
             </li>
           </ul>
@@ -57,13 +64,11 @@ function WelcomePage() {
         <div className="welcome-page-main">
           <h1>Welcome to the Dashboard</h1>
           <p>LIST OF TRAINS</p>
+          <Routes>
+            <Route path="/ManageAccounts" element={<ManageAccounts />} />
+          </Routes>
         </div>
       </div>
-
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/manage-accounts" element={<ManageAccounts />} />
-      </Routes>
     </div>
   );
 }

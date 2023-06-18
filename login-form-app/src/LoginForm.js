@@ -6,6 +6,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [shakeAnimation, setShakeAnimation] = useState(false);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -24,6 +25,11 @@ const LoginForm = ({ setIsLoggedIn }) => {
       navigate('/welcome');
     } else {
       setErrorMessage('Incorrect username or password');
+      setShakeAnimation(true);
+
+      setTimeout(() => {
+        setShakeAnimation(false);
+      }, 500);
     }
   };
 
@@ -31,28 +37,38 @@ const LoginForm = ({ setIsLoggedIn }) => {
     <div style={styles.container}>
       <h1 style={styles.heading}>Admin Login</h1>
       <form onSubmit={handleLogin}>
-        <div style={styles.formGroup}>
-          <label htmlFor="username" style={styles.label}>Username:</label>
+        <div
+          style={{
+            ...styles.formGroup,
+            animation: shakeAnimation ? 'shake 0.5s' : 'none',
+          }}
+        >
           <input
             type="text"
-            id="username"
+            placeholder="Username"
             value={username}
             onChange={handleUsernameChange}
             style={styles.inputField}
           />
         </div>
-        <div style={styles.formGroup}>
-          <label htmlFor="password" style={styles.label}>Password:</label>
+        <div
+          style={{
+            ...styles.formGroup,
+            animation: shakeAnimation ? 'shake 0.5s' : 'none',
+          }}
+        >
           <input
             type="password"
-            id="password"
+            placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
             style={styles.inputField}
           />
         </div>
         {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
-        <button type="submit" style={styles.loginButton}>Login</button>
+        <button type="submit" style={styles.loginButton}>
+          Log In
+        </button>
       </form>
     </div>
   );
@@ -60,35 +76,35 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
 const styles = {
   container: {
-    width: '300px',
-    backgroundColor: '#ffffff',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-    padding: '30px',
-    borderRadius: '10px',
-    margin: '0 auto', // Center the form horizontally
-    marginTop: '100px', // Adjust the vertical position as needed
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '100vh',
+    backgroundColor: '#f0f2f5',
+    padding: '20px',
+    borderRadius: '8px',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
   },
   heading: {
     marginBottom: '20px',
-    color: '#444444',
+    color: 'orange',
     fontSize: '24px',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   formGroup: {
-    marginBottom: '20px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '5px',
-    color: '#444444',
-    fontSize: '14px',
+    width: '100%',
+    marginBottom: '15px',
   },
   inputField: {
     width: '100%',
-    padding: '10px',
-    border: '1px solid #cccccc',
+    padding: '12px',
+    border: '1px solid #dddfe2',
     borderRadius: '5px',
     fontSize: '14px',
+    backgroundColor: '#f0f2f5',
+    outline: 'none',
   },
   errorMessage: {
     marginTop: '10px',
@@ -97,16 +113,18 @@ const styles = {
     textAlign: 'center',
   },
   loginButton: {
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#007bff',
+    width: '50%',
+    padding: '12px',
+    backgroundColor: '#1877f2',
     border: 'none',
     color: '#ffffff',
     borderRadius: '5px',
     fontSize: '14px',
+    fontWeight: 'bold',
     cursor: 'pointer',
+    outline: 'none',
+    transition: 'background-color 0.3s',
   },
-  
 };
 
 export default LoginForm;
