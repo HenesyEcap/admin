@@ -1,0 +1,106 @@
+/* WelcomePage Styles */
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.welcome-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}
+
+.welcome-page-logo {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-page-logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.welcome-page-logo-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.welcome-page-content {
+  display: flex;
+  flex: 1;
+}
+
+.welcome-page-sidebar {
+  flex: 0 0 200px;
+  background-color: #f1f1f1;
+  padding: 16px;
+  transition: transform 0.3s;
+}
+
+.sidebar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 8px;
+}
+
+.sidebar-nav li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar-nav li a.active {
+  font-weight: bold;
+}
+
+.welcome-page-main {
+  flex: 1;
+  padding: 16px;
+}
+
+.sidebar-closed {
+  transform: translateX(-200px);
+}
+
+.toggle-sidebar-button {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  background-color: #f1f1f1;
+  color: #333;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.logout-button {
+  background-color: red;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #000000;
+}
