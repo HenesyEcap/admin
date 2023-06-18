@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import logo from './logo.png'; // Adjust the path based on the location of your logo file
 import './WelcomePage.css';
+
+import ManageAccounts from './ManageAccounts';
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -36,8 +38,8 @@ function WelcomePage() {
           <ul className="sidebar-nav">
             <li>
               <Link
-                to="/WelcomePage"
-                className={location.pathname === '/WelcomePage' ? 'active' : ''}
+                to="/"
+                className={location.pathname === '/' ? 'active' : ''}
               >
                 Dashboard
               </Link>
@@ -57,6 +59,11 @@ function WelcomePage() {
           <p>LIST OF TRAINS</p>
         </div>
       </div>
+
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/manage-accounts" element={<ManageAccounts />} />
+      </Routes>
     </div>
   );
 }
